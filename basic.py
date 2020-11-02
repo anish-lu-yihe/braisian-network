@@ -16,8 +16,8 @@ for i in range(item_num - 1):
 # init experiment
 inputs = [4, 5]
 X = np.zeros(item_num)
-X[inputs] = .5
 Y = X.astype(np.float)
+X[inputs] = 1
 outputs = np.empty((0, item_num))
 epochs = range(100)
 for t in epochs:

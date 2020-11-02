@@ -89,9 +89,9 @@ def softmax(x, temperature = 1.0):
     -------
     The function is numerically stable for very big/small values.
     """
-    x_ = np.asarray(x)
-    item_size = x_.shape[-1]
-    canx = canonicalisation(x_, item_size)
+    x = np.asarray(x)
+    item_size = x.shape[-1]
+    canx = canonicalisation(x, item_size)
     probs = []
     if temperature == 0:
         for item in canx:

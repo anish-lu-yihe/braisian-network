@@ -11,13 +11,13 @@ from general_funs import *
 item_num = 9
 M = np.zeros((item_num, item_num))
 for i in range(item_num - 1):
-    # M[i, i] += 0.5
+    M[i, i] += 1
     M[i, i + 1] += 1
-    M[i + 1, i] -= 1
-M[0, 0] = 1
-M[-1, -1] = -1
+    # M[i + 1, i] += -0.5
+    # M[i + 1, i + 1] += -0.5
+
 # init experiment
-inputs = [0, 8]
+inputs = [4, 5]
 X = np.zeros(item_num)
 Y = X.astype(np.float)
 Z = Y[inputs]
@@ -26,10 +26,11 @@ outputs = np.empty((0, Z.size))
 ys = np.empty((0, item_num))
 epochs = range(1000)
 for t in epochs:
-    temp = 1 - t / 1000
     dY = -np.dot(M, np.dot(M.T, Y) - X) * 0.1
     Y += dY #+ np.random.randn(item_num) / 1000 
     ys = np.append(ys, [Y], axis = 0)
+    
+    temp = 1 - t / 1000
     Z = softmax(Y[inputs], temp)[0]
     outputs = np.append(outputs, [Z], axis = 0)
 # outputs = softmax(ys[:, inputs])
