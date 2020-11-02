@@ -20,21 +20,24 @@ M[-1, -1] = -1
 inputs = [0, 8]
 X = np.zeros(item_num)
 Y = X.astype(np.float)
-Z = Y
+Z = Y[inputs]
 X[inputs] = 1
-outputs = np.empty((0, item_num))
-ys = outputs
+outputs = np.empty((0, Z.size))
+ys = np.empty((0, item_num))
 epochs = range(1000)
 for t in epochs:
+    temp = 1 - t / 1000
     dY = -np.dot(M, np.dot(M.T, Y) - X) * 0.1
     Y += dY #+ np.random.randn(item_num) / 1000 
     ys = np.append(ys, [Y], axis = 0)
-outputs = softmax(ys[:, inputs])
+    Z = softmax(Y[inputs], temp)[0]
+    outputs = np.append(outputs, [Z], axis = 0)
+# outputs = softmax(ys[:, inputs])
 
 fig, ax = plt.subplots(2, 1)
 for i in inputs:
     ax[0].plot(epochs, ys[:, i], label = 'Y[{}]'.format(i))
-for i in range(2):
+for i in range(Z.size):
     ax[1].plot(epochs, outputs[:, i], label = 'output[{}]'.format(i))
 ax[0].legend(loc = 'upper right')
 
