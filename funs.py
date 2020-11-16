@@ -17,7 +17,7 @@ class feedback_inhibition_network:
         self.M = np.asarray(M)
         self.num_Y, self.num_X = self.M.shape
 
-    def recognise(self, X, epoch = 100, rate = 0.1, epsilon = 0.001):
+    def recognise(self, X, epoch = 1000, rate = 0.1, epsilon = 0.01):
         recog_methods = {'divisive': self.__recognise_div,
                          'subtractive': self.__recognise_sub}
         return recog_methods[self.inhitype](X, epoch, rate, epsilon)
@@ -41,17 +41,18 @@ class feedback_inhibition_network:
             Xe = np.dot(self.M.T, Y) 
             Xe[Xe == 0] = epsilon
             E = np.divide(X, Xe)
+            V[V == 0] = epsilon
             dY = np.multiply(Y, np.divide(np.dot(self.M, E), V) - 1)
             noise = np.abs(np.random.normal(scale = epsilon, size = self.num_Y))
             Y += dY * rate + noise
             outputs = np.append(outputs, [Y], axis = 0)
         return outputs
 
-M = np.asarray([[1,1,0,0],[0,0,1,1],[0,1,1,0]])
-fin = feedback_inhibition_network('d')
-fin.setup_matrix(M)
-print(fin.recognise([0,1,1,0])[-1])
+# M = np.asarray([[1,1,0,0],[0,1,1,0],[0,0,1,1],[1,1,1,0]])
+# fin = feedback_inhibition_network('d')
+# fin.setup_matrix(M)
+# print(fin.recognise([0,1,1,0])[-1])
 
-bfin = feedback_inhibition_network('d')
-bfin.setup_matrix(M.T)
-print(bfin.recognise([0,1,0])[-1])
+# bfin = feedback_inhibition_network('d')
+# bfin.setup_matrix(M.T)
+# print(bfin.recognise([0,1,1,1])[-1])
