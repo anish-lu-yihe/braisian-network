@@ -8,7 +8,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from funs import *
 # init params
-x_num, y_num = 100, 100
+x_num, y_num = 500, 100
 item_num = 3
 X = np.random.randint(2, size = (item_num, x_num))
 Y = np.random.randint(2, size = (item_num, y_num))
