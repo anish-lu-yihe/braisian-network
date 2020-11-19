@@ -17,7 +17,7 @@ class feedback_inhibition_network:
         self.M = np.asarray(M)
         self.num_Y, self.num_X = self.M.shape
 
-    def recognise(self, X, epoch = 1000, rate = 0.1, epsilon = 0.0001):
+    def recognise(self, X, epoch = 1000, rate = 0.1, epsilon = 0.001):
         recog_methods = {'divisive': self.__recognise_div,
                          'subtractive': self.__recognise_sub}
         return recog_methods[self.inhitype](X, epoch, rate, epsilon)

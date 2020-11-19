@@ -34,4 +34,4 @@ ax[0].plot(epochs[1:], diff1y[1:])
 ax[1].plot(epochs[1:], diff2x[1:])
 ax[0].set_xscale('log')
 ax[1].set_xscale('log')
-
+# coupling between X and Y through episodic key
