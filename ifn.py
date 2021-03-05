@@ -24,7 +24,7 @@ class inhibitory_feedback_network:
         
     def _recognise_sub(self, X, epoch, rate, epsilon):
         Y = np.zeros(self.num_Y)
-        outputs = np.empty((0, self.num_Y))
+        outputs = [np.dot(self.M, X)]
         for t in range(epoch):
             E = X - np.dot(self.M.T, Y)
             dY = np.dot(self.M, E)
