@@ -18,7 +18,7 @@ Xfin = feedback_inhibition_network('d')
 Xfin.setup_matrix(M)
 
 X = np.zeros(x_num)
-X[:70] = np.random.randint(2, size=70)
+X[:100] = np.random.randint(2, size=100)
 
 epoch = 100
 key1 = Xfin.recognise(X, epoch)
