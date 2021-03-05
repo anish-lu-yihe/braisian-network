@@ -18,8 +18,8 @@ class inhibitory_feedback_network:
         self.num_Y, self.num_X = self.M.shape
 
     def recognise(self, X, epoch = 1000, rate = 0.1, epsilon = 0.001):
-        Dxn_recog = {'div': self.__recognise_div,
-                     'sub': self.__recognise_sub}
+        Dxn_recog = {'div': self._recognise_div,
+                     'sub': self._recognise_sub}
         return Dxn_recog[self.inhitype](X, epoch, rate, epsilon)
         
     def _recognise_sub(self, X, epoch, rate, epsilon):
