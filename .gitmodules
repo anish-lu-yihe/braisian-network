@@ -1,5 +1,5 @@
 [submodule "basic_functions"]
-	path = basic_functions
+	path = useless_submodule
 	url = https://github.com/anish-lu-yihe/basic_functions
 	branch = main
 [submodule "common_functions"]
