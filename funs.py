@@ -2,11 +2,11 @@
 """
 Created on Sat Nov 14 16:06:47 2020
 
-@author: anish
+@author: Yihe Lu
 """
 import numpy as np
 
-class feedback_inhibition_network:
+class inhibitory_feedback_network:
     def __init__(self, inhibition_type = 'divisive'):
         if inhibition_type in ['s', 'sub', 'subtract', 'subtractive']:
             self.inhitype = 'subtractive'
