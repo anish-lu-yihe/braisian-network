@@ -2,3 +2,6 @@
 	path = basic_functions
 	url = https://github.com/anish-lu-yihe/basic_functions
 	branch = main
+[submodule "common_functions"]
+	path = common_functions
+	url = https://github.com/anish-lu-yihe/common_functions
