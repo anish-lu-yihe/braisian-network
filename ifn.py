@@ -7,13 +7,14 @@ Created on Sat Nov 14 16:06:47 2020
 import numpy as np
 
 class inhibitory_feedback_network:
-    def __init__(self, inhibition_type = 'divisive'):
+    def __init__(self, M, inhibition_type = 'divisive'):
+        self.set_memory(M)
         if inhibition_type in ['s', 'sub', 'subtract', 'subtractive']:
             self.inhitype = 'sub'
         else:
             self.inhitype = 'div'
 
-    def setup_matrix(self, M):
+    def set_memory(self, M):
         self.M = np.asarray(M)
         self.num_Y, self.num_X = self.M.shape
 
