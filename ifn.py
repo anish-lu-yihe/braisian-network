@@ -58,6 +58,7 @@ class inhibitory_feedback_network:
         return np.dot(self.M, X - Xhat)
     
     def _dY_div2(self, X, Xhat, Y):
+        Xhat[Xhat == 0] = 0.001
         numer = np.dot(self.M, np.divide(X, Xhat) - 1)
         denom = np.sum(self.M, axis = 1)
         return np.multiply(Y, np.divide(numer, denom))
