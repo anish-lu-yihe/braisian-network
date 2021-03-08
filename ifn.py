@@ -45,6 +45,7 @@ class inhibitory_feedback_network:
     
     def recognise2(self, X, epoch = 1000, rate = 0.1, epsilon = 0.001):        
         _dY = {'div': self._dY_div2, 'sub': self._dY_sub2}[self.inhitype]  
+        X = np.asarray(X, dtype = float)
         Y = np.dot(self.M, X)
         outputs = [np.dot(self.M, X)]
         for t in range(epoch):
@@ -58,8 +59,7 @@ class inhibitory_feedback_network:
         return np.dot(self.M, X - Xhat)
     
     def _dY_div2(self, X, Xhat, Y):
-        Xhat[Xhat == 0] = 0.001
-        numer = np.dot(self.M, np.divide(X, Xhat) - 1)
+        numer = np.dot(self.M, np.divide(X, Xhat, out = np.ones_like(X), where = Xhat != 0) - 1)
         denom = np.sum(self.M, axis = 1)
         return np.multiply(Y, np.divide(numer, denom))
         
