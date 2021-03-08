@@ -23,6 +23,7 @@ class inhibitory_feedback_network:
     
     def _dY_div(self, X, Xhat, Y):
         numer = np.dot(self.M, np.divide(X, Xhat, out = np.ones_like(X), where = Xhat != 0) - 1)
+        # if Xhat is approaching 0; X must be 0 too; so the output would be 1.
         denom = np.sum(self.M, axis = 1)
         return np.multiply(Y, np.divide(numer, denom))
     
